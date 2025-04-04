@@ -67,8 +67,7 @@ const projects = [
       
     ],
     images: [
-      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      
     ],
     backgroundImage: "/cooking.jpg"
   },
@@ -85,8 +84,7 @@ const projects = [
       
     ],
     images: [
-      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      
     ],
     backgroundImage: "/cooking.jpg"
   },
@@ -104,7 +102,7 @@ const projects = [
     ],
     images: [
       "cooking.png",
-      "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      
     ],
     backgroundImage: "cooking.png"
   },
@@ -124,7 +122,7 @@ const projects = [
       "A/B testing framework"
     ],
     images: [
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      
     ]
   },
   {
@@ -139,7 +137,7 @@ const projects = [
       "Comprehensive Evaluation : Analyzed precision, recall, and F1-scores for both classes (Heart Disease/No Heart Disease).",
     ],
     images: [
-      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      
     ]
   },
   {
@@ -157,7 +155,7 @@ const projects = [
       "Real-time predictions"
     ],
     images: [
-      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      
     ]
   }
 ];
