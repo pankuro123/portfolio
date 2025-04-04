@@ -34,21 +34,21 @@ const certificates = [
     name: "Google Project Management",
     issuer: "Google",
     date: "2024",
-    image: "/certificates/google_2.jpg",
+    image: "certificates/google_2.jpg",
     
   },
   {
     name: "Foundations: Data, Data, Everywhere",
     issuer: "Google",
     date: "2023",
-    image: "/certificates/google.jpg",
+    image: "certificates/google.jpg",
     
   },
   {
     name: "Client Needs and Software Requirements",
     issuer: "University of Alberta",
     date: "2023",
-    image: "/certificates/Alberta.jpg",
+    image: "certificates/Alberta.jpg",
     
   }
 ];
@@ -69,7 +69,7 @@ const projects = [
     images: [
       
     ],
-    backgroundImage: "/cooking.jpg"
+    backgroundImage: "cooking.jpg"
   },
   {
     title: "Pedestrian Flow Simulation",
@@ -86,7 +86,7 @@ const projects = [
     images: [
       
     ],
-    backgroundImage: "/cooking.jpg"
+    backgroundImage: "cooking.jpg"
   },
   {
     title: "INNOFAB: Intelligent Laboratory Resource Management",
@@ -388,7 +388,7 @@ function App() {
       </div>
       <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
             < img 
-              src="/image.png" 
+              src="image.png" 
               alt="Description" 
                className="w-30 h-auto opacity-90 mix-blend-multiply" 
              />
