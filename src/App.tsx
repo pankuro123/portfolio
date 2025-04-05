@@ -631,10 +631,10 @@ function App() {
             <div className="flex flex-col gap-6 items-center">
               <a href="#" className="flex items-center gap-3 text-xl hover:text-purple-400 transition-colors">
                 <Mail className="w-6 h-6" />
-                hello@example.com
+                hamza.erraji@centrale.centralelille.fr
               </a>
               
-              <a href="#" className="flex items-center gap-3 text-xl hover:text-purple-400 transition-colors">
+              <a href="https://drive.google.com/file/d/1SXfpaPi07SdipshbYr_ohjno0Zep61lU/view?usp=drive_link" className="flex items-center gap-3 text-xl hover:text-purple-400 transition-colors">
                 <ScrollText className="w-6 h-6" />
                 Download Resume
               </a>
