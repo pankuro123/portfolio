@@ -2,6 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GraduationCap } from 'lucide-react';
 import { 
+  Camera,
+  Users, 
+  ClipboardList, 
+  GitPullRequestArrow, 
+  Handshake, 
   Brain, 
   Code2, 
   Database, 
@@ -164,9 +169,18 @@ const projects = [
 
 const skills = [
   { name: "Machine Learning", level: 95, icon: Brain },
+  { 
+    name: "Image Processing", 
+    icon: Camera,
+  },
   { name: "Deep Learning", level: 90, icon: Cpu },
   { name: "Python", level: 95, icon: Code2 },
   { name: "Data Engineering", level: 85, icon: Database },
+  { name: "Teamwork", level: 90, icon: Users },
+  { name: "Project Management", level: 85, icon: ClipboardList },
+  { name: "Change Management", level: 80, icon: GitPullRequestArrow },
+  { name: "Interdisciplinary Collaboration", level: 88, icon: Handshake },
+  { name: "Operational Coordination", level: 87, icon: Network },
 ];
 
 interface CertificateModalProps {
@@ -398,21 +412,19 @@ function App() {
         {/* Hero Section */}
         <section id="hero" className="min-h-screen flex items-center justify-center p-8 relative">
           <div className="max-w-4xl relative">
-            <div className="absolute -top-10 -left-20">
+            <div className="absolute -top-10 -left-20 hidden md:block">
               <Sparkles className="w-12 h-12 text-purple-400 animate-pulse" />
             </div>
             
             {/* Floating Icons */}
-            <div className="absolute -top-10 right-40 flex flex-col items-center grid grid-cols-2 gap-8">
+            <div className="absolute -top-10 right-40 flex flex-col items-center hidden md:grid grid-cols-2 gap-8 ">
                 <Network className="w-16 h-16 text-purple-300 animate-float" style={{ animationDelay: '1s' }} />
                 <Binary className="w-16 h-16 text-indigo-300 animate-float" style={{ animationDelay: '1.5s' }} />
             </div>
 
-            <div className="absolute -top-10 -right-64  grid grid-cols-2 gap-8">
-              <Bot className="w-16 h-16 text-purple-400 animate-float" style={{ animationDelay: '0s' }} />
-            </div>
             
-            <div className="absolute -left-24 top-1/2 grid gap-8">
+            
+            <div className="absolute -left-24 top-1/2 grid gap-8 hidden md:block">
               <Workflow className="w-16 h-16 text-purple-500 animate-float" style={{ animationDelay: '0.7s' }} />
               <Brain className="w-16 h-16 text-indigo-500 animate-float" style={{ animationDelay: '1.2s' }} />
             </div>
@@ -587,35 +599,25 @@ function App() {
         </section>
 
         {/* Skills Section */}
-        <section id="skills" className="min-h-screen p-8 relative">
-          <h2 className="text-4xl font-bold mb-12 text-center">Skills</h2>
-          <div 
-            ref={skillsRef}
-            className="flex overflow-x-auto gap-8 pb-8 snap-x snap-mandatory scrollbar-hide"
-          >
+        <section id="skills" className="py-12 px-8 relative">
+          <h2 className="text-4xl font-bold mb-8 text-center">Skills</h2>
+  
+          <div className="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
             {skills.map((skill, index) => (
               <div 
                 key={index} 
-                className="min-w-[300px] bg-purple-900/30 backdrop-blur-sm p-6 rounded-xl border border-purple-500/20 snap-center"
+                className="bg-purple-900/20 backdrop-blur-sm p-4 rounded-lg border border-purple-500/20 hover:bg-purple-900/30 transition-colors duration-200 flex flex-col items-center text-center"
               >
-                <div className="flex items-center gap-4 mb-4">
-                  <skill.icon className="w-8 h-8 text-purple-400" />
-                  <span className="text-xl font-medium">{skill.name}</span>
-                </div>
-                <div className="h-3 bg-purple-900/30 rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full transition-all duration-1000"
-                    style={{ width: `${skill.level}%` }}
-                  />
-                </div>
+                <skill.icon className="w-6 h-6 text-purple-400 mb-2" />
+                <span className="text-sm font-medium">{skill.name}</span>
               </div>
             ))}
           </div>
-
+        
           {/* Navigation Arrow */}
           <button 
             onClick={() => scrollToSection('contact')}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-purple-400 hover:text-purple-300 transition-colors animate-bounce"
+            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-purple-400 hover:text-purple-300 transition-colors animate-bounce"
           >
             <ChevronDown className="w-10 h-10" />
           </button>
