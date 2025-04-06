@@ -447,10 +447,7 @@ function App() {
             Centralien engineering student passionate about AI, machine learning, and deep learning. I create intelligent systems that solve real-world challenges.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="flex items-center gap-2 px-6 py-3 bg-purple-600 rounded-full hover:bg-purple-700 transition-colors">
-                <Github className="w-5 h-5" />
-                GitHub
-              </a>
+              
               <a href="https://www.linkedin.com/in/hamza-erraji-7a8985285/" className="flex items-center gap-2 px-6 py-3 bg-indigo-600 rounded-full hover:bg-indigo-700 transition-colors">
                 <Linkedin className="w-5 h-5" />
                 LinkedIn
