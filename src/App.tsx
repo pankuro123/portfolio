@@ -23,6 +23,7 @@ import {
   Binary,
   Workflow,
   X,
+  ChevronRight,
   Award
 } from 'lucide-react';
 
@@ -32,7 +33,8 @@ const certificates = [
     name: "IBM Machine Learning Professional Certificate",
     issuer: "IBM",
     date: "2024",
-    image: "cooking.jpg",
+    image: "certificates/oven.png",
+    description : "This certificate is still in the oven  final touches in progress!Come back soon to see it fresh and crisp. In the meantime, feel free to explore the rest of the achievements!",
     
   },
   {
@@ -60,22 +62,20 @@ const certificates = [
 
 const projects = [
   {
-    title: "Pedestrian Flow Simulation",
-    description: "Simulating and optimizing pedestrian movement for efficient evacuation management.",
-    tech: ["Python", "MATLAB", "Machine Learning", "Numerical Optimization", "Mathematical Modeling"],
+    title: "Optimisation des tournées de véhicules (VRP)",
+    description: "Optimisation des tournées de véhicules (VRP) en utilisant des métaheuristiques hybrides pour minimiser les coûts tout en respectant les contraintes de livraison.",
+    tech: ["Algorithme génétique ", "Machine Learning", "AI agent"],
     link: "#",
-    fullDescription: `This project focuses on modeling and optimizing crowd dynamics during evacuations using advanced mathematical techniques. I developed simulations integrating cellular automata, differential equations, and multi-agent systems to analyze pedestrian movement in critical situations. The implementation combines machine learning and numerical optimization to improve the accuracy of predictions and enhance safety strategies.`,
+    fullDescription: `This project is still being cooked — please wait until the host serves the final dish! In the meantime, feel free to check out the other projects on the menu! `,
     features: [
-      "Developed predictive models using differential equations and multi-agent systems",
-      "Integrated Python and MATLAB for simulations and data analysis",
-      "Applied Monte Carlo simulations for model validation",
-      
+      ,
     ],
     images: [
       
     ],
     backgroundImage: "cooking.jpg"
   },
+  
   {
     title: "Pedestrian Flow Simulation",
     description: "Simulating and optimizing pedestrian movement for efficient evacuation management.",
@@ -91,7 +91,7 @@ const projects = [
     images: [
       
     ],
-    backgroundImage: "cooking.jpg"
+    backgroundImage: ""
   },
   {
     title: "INNOFAB: Intelligent Laboratory Resource Management",
@@ -145,24 +145,7 @@ const projects = [
       
     ]
   },
-  {
-    title: "Time Series Forecasting",
-    description: "Deep learning model for accurate prediction of financial market trends",
-    tech: ["TensorFlow", "Prophet", "pandas"],
-    link: "#",
-    fullDescription: `A comprehensive time series forecasting system that combines traditional statistical 
-    methods with deep learning approaches. The system provides accurate predictions for financial markets 
-    with uncertainty estimation.`,
-    features: [
-      "Multiple time series support",
-      "Uncertainty estimation",
-      "Automated feature extraction",
-      "Real-time predictions"
-    ],
-    images: [
-      
-    ]
-  }
+  
 ];
 
 
@@ -193,21 +176,21 @@ const education = [
     school: "École Centrale Lille",
     degree: "",
     year: "2025-2024",
-    description: "Specialized in Artificial Intelligence and Machine Learning",
+    description: "",
     image: "acad/lille.png"
   },
   {
     school: "École Centrale Casablanca",
     degree: "",
     year: "2025-2023",
-    description: "Focus on algorithms and computational theory",
+    description: "",
     image: "acad/casa.png"
   },
   {
-    school: "classe préparatoire aux grandes écoles",
+    school: "classe préparatoire aux grandes écoles MP",
     degree: "",
     year: "2023-2021",
-    description: "Advanced placement in mathematics and computer science",
+    description: "",
     image: "acad/prepa.png"
   }
 ];
@@ -215,28 +198,44 @@ const education = [
 const CertificateModal: React.FC<CertificateModalProps> = ({ certificate, onClose }) => {
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-[#1a1a2e] border border-purple-500/20 rounded-xl max-w-3xl w-full modal-animation">
-        <div className="p-6 border-b border-purple-500/20 flex justify-between items-center">
+      {/* Adjusted container with max-height and centered layout */}
+      <div className="bg-[#1a1a2e] border border-purple-500/20 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-6 border-b border-purple-500/20 flex justify-between items-center sticky top-0 bg-[#1a1a2e] z-10">
           <h3 className="text-2xl font-bold">{certificate.name}</h3>
-          <button 
-            onClick={onClose}
-            className="text-gray-400 hover:text-white transition-colors"
-          >
+          <button onClick={onClose} className="text-gray-400 hover:text-white">
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="p-6">
-          <img
-            src={certificate.image}
-            alt={certificate.name}
-            className="w-[450px] h-[400px] object-cover rounded-lg mb-6"
-          />
-          <div className="flex items-center gap-4 mb-4">
-            <Award className="w-6 h-6 text-purple-400" />
-            <span className="text-lg">{certificate.issuer}</span>
-            <span className="text-gray-400">{certificate.date}</span>
+        
+        {/* Flexible image container */}
+        <div className="p-6 flex flex-col items-center">
+          <div className="w-full max-w-2xl mx-auto">
+            <img
+              src={certificate.image}
+              alt={certificate.name}
+              className="w-full h-auto max-h-[60vh] object-contain rounded-lg"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+                display: 'block'
+              }}
+            />
           </div>
-          <p className="text-gray-300">{certificate.description}</p>
+          
+          {/* Certificate details - now properly spaced */}
+          <div className="w-full max-w-2xl mt-6 space-y-4">
+            <div className="flex items-center gap-4">
+              <Award className="w-6 h-6 text-purple-400 flex-shrink-0" />
+              <div>
+                <p className="font-medium">{certificate.issuer}</p>
+                <p className="text-gray-400 text-sm">{certificate.date}</p>
+              </div>
+            </div>
+            
+            {certificate.description && (
+              <p className="text-gray-300 mt-4">{certificate.description}</p>
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -253,7 +252,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
       <div 
         className="bg-[#1a1a2e] border border-purple-500/20 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto modal-animation relative"
         style={{
-          backgroundImage: `linear-gradient(rgba(26, 26, 46, 0.75), rgba(26, 26, 46, 0.75)), url(${project.backgroundImage})`,
+          backgroundImage: `linear-gradient(rgba(26, 26, 46, 0.5), rgba(26, 26, 46, 0.5)), url(${project.backgroundImage})`,
           backgroundSize: 'contain',
           backgroundPosition: 'center',
           backgroundRepeat: ''
@@ -433,12 +432,12 @@ function App() {
             
 
           
-            <h1 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-indigo-300">
+            <h1 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-indigo-300 pb-2">
               Hamza Erraji
             </h1>
             
 
-            <h1 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-400">
+            <h1 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-400 pb-2">
               AI & Machine Learning Engineer
             </h1>
             <p className="text-xl text-gray-200 mb-8">
@@ -462,44 +461,77 @@ function App() {
           {/* Navigation Arrow */}
           <button 
             onClick={() => scrollToSection('education')}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-purple-400 hover:text-purple-300 transition-colors animate-bounce"
+            className="hidden sm:block absolute bottom-8 left-1/2 transform -translate-x-1/2 text-purple-400 hover:text-purple-300 transition-colors animate-bounce"
           >
             <ChevronDown className="w-10 h-10" />
           </button>
-        </section>
+          </section>
         
         {/* Education Section */}
 
 
-        <section id="education" className="min-h-screen p-8 relative">
-          <h2 className="text-4xl font-bold mb-12 text-center flex items-center justify-center gap-4">
-            <GraduationCap className="w-10 h-10 text-purple-400" />
+        <section id="education" className="min-h-screen p-4 md:p-8 relative">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-center flex items-center justify-center gap-3 md:gap-4">
+            <GraduationCap className="w-8 h-8 md:w-10 md:h-10 text-purple-400" />
             {t('Education')}
           </h2>
+        
+          {/* Mobile Layout (vertical stack) */}
+          <div className="md:hidden space-y-4">
+            {education.map((edu, index) => (
+              <div 
+                key={index}
+                className="w-full bg-purple-900/30 backdrop-blur-sm rounded-xl border border-purple-500/20 overflow-hidden"
+              >
+                <div className="flex flex-col md:flex-row">
+                  {/* Image - Square aspect on mobile */}
+                  <div className="w-full h-48 md:h-64 md:w-1/3 overflow-hidden">
+                    <img
+                      src={edu.image}
+                      alt={edu.school}
+                              className="w-full h-full object-cover"
+                    />
+                  </div>
+                  
+                  {/* Content - Optimized for small screens */}
+                  <div className="p-4 md:p-6">
+                    <h3 className="text-lg md:text-xl font-bold text-white line-clamp-1">{edu.school}</h3>
+                    <p className="text-purple-300 text-sm md:text-base mb-1 md:mb-2">{edu.year}</p>
+                    <h4 className="text-base md:text-lg font-semibold text-purple-400 line-clamp-1">{edu.degree}</h4>
+                    <p className="text-gray-300 text-sm md:text-base mt-1 md:mt-2 line-clamp-2">
+                      {edu.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        
+          {/* Desktop Layout (horizontal scroll) */}
           <div 
             ref={educationRef}
-            className="flex overflow-x-auto gap-8 pb-8 snap-x snap-mandatory scrollbar-hide"
+            className="hidden md:flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scrollbar-hide"
           >
             {education.map((edu, index) => (
               <div 
                 key={index}
-                className="min-w-[450px] bg-purple-900/30 backdrop-blur-sm rounded-xl border border-purple-500/20 snap-center overflow-hidden hover:transform hover:scale-105 transition-all duration-300"
+                className="min-w-[350px] md:min-w-[450px] bg-purple-900/30 backdrop-blur-sm rounded-xl border border-purple-500/20 snap-center overflow-hidden hover:transform hover:scale-105 transition-all duration-300 flex-shrink-0"
               >
-                {/* Big Image (No Overlay) */}
-                <div className="h-64 w-full overflow-hidden"> {/* Increased height */}
+                {/* Big Image */}
+                <div className="h-48 md:h-64 w-full overflow-hidden">
                   <img
                     src={edu.image}
                     alt={edu.school}
-                    className="w-full h-full object-cover"
+            className="w-full h-full object-cover"
                   />
                 </div>
-        
+                
                 {/* Text Below Image */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-white">{edu.school}</h3>
-                  <p className="text-purple-300 mb-2">{edu.year}</p> {/* Added margin-bottom */}
-                  <h4 className="text-lg font-semibold text-purple-400">{edu.degree}</h4>
-                  <p className="text-gray-300 mt-2">{edu.description}</p> {/* Added margin-top */}
+                <div className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl font-bold text-white">{edu.school}</h3>
+                  <p className="text-purple-300 text-sm md:text-base mb-1 md:mb-2">{edu.year}</p>
+                  <h4 className="text-base md:text-lg font-semibold text-purple-400">{edu.degree}</h4>
+                  <p className="text-gray-300 text-sm md:text-base mt-1 md:mt-2">{edu.description}</p>
                 </div>
               </div>
             ))}
@@ -509,27 +541,63 @@ function App() {
           {/* Navigation Arrow */}
           <button 
             onClick={() => scrollToSection('projects')}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-purple-400 hover:text-purple-300 transition-colors animate-bounce"
+            className="hidden sm:block absolute bottom-8 left-1/2 transform -translate-x-1/2 text-purple-400 hover:text-purple-300 transition-colors animate-bounce"
           >
             <ChevronDown className="w-10 h-10" />
           </button>
-        </section>
+          </section>
 
-        {/* Projects Section */}
-        <section id="projects" className="min-h-screen p-8 relative">
-          <h2 className="text-4xl font-bold mb-12 text-center">Projects</h2>
+
+        {/* projects Section */}
+
+        <section id="projects" className="min-h-screen p-4 md:p-8 relative">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-12 text-center">Projects</h2>
+        
+          {/* MOBILE LAYOUT (vertical scroll) */}
+          <div className="md:hidden space-y-4">
+            {projects.map((project, index) => (
+              <div 
+                key={index}
+                className="w-full bg-purple-900/40 backdrop-blur-sm p-4 rounded-xl
+                          border border-purple-500/20 cursor-pointer"
+                onClick={() => setSelectedProject(project)}
+              >
+                <div className="flex items-start gap-3">
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold line-clamp-1">{project.title}</h3>
+                    <p className="text-gray-300 text-sm line-clamp-2 mt-1">{project.description}</p>
+                  </div>
+                  <ChevronRight className="text-purple-400 mt-0.5 flex-shrink-0 animate-pulse-x" />
+                </div>
+                
+                <div className="flex flex-wrap gap-1.5 mt-3">
+                  {project.tech.slice(0, 3).map((tech, i) => (
+                    <span key={i} className="px-2 py-0.5 bg-purple-600/30 rounded-full text-xs">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        
+          {/* DESKTOP LAYOUT (horizontal scroll) */}
           <div 
             ref={projectsRef}
-            className="flex overflow-x-auto gap-8 pb-8 snap-x snap-mandatory scrollbar-hide"
+            className="hidden md:flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scrollbar-hide"
           >
             {projects.map((project, index) => (
               <div 
                 key={index}
-                className="min-w-[350px] bg-purple-900/40 backdrop-blur-sm p-6 rounded-xl hover:transform hover:scale-105 transition-all duration-300 border border-purple-500/20 snap-center cursor-pointer"
+                className="min-w-[400px] bg-purple-900/40 backdrop-blur-sm p-6 rounded-xl
+                          hover:transform hover:scale-105 transition-all duration-300 
+                          border border-purple-500/20 snap-center cursor-pointer
+                          relative overflow-hidden group"
                 onClick={() => setSelectedProject(project)}
               >
                 <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
                 <p className="text-gray-300 mb-4">{project.description}</p>
+                
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map((tech, i) => (
                     <span key={i} className="px-3 py-1 bg-purple-600/30 rounded-full text-sm">
@@ -537,53 +605,10 @@ function App() {
                     </span>
                   ))}
                 </div>
-                <a 
-                  onClick={(e) => e.stopPropagation()}
-                  href={project.link} 
-                  className="text-purple-400 hover:text-purple-300 flex items-center gap-2"
-                >
-                  View Project <Code2 className="w-4 h-4" />
-                </a>
-              </div>
-            ))}
-          </div>
-
-          {/* Navigation Arrow */}
-          <button 
-            onClick={() => scrollToSection('certificates')}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-purple-400 hover:text-purple-300 transition-colors animate-bounce"
-          >
-            <ChevronDown className="w-10 h-10" />
-          </button>
-        </section>
-
-        {/* Certificates Section */}
-        <section id="certificates" className="min-h-screen p-8 relative">
-          <h2 className="text-4xl font-bold mb-12 text-center">Certificates</h2>
-          <div 
-            ref={certificatesRef}
-            className="flex overflow-x-auto gap-8 pb-8 snap-x snap-mandatory scrollbar-hide"
-          >
-            {certificates.map((certificate, index) => (
-              <div 
-                key={index}
-                className={`min-w-[300px] bg-purple-900/30 backdrop-blur-sm rounded-xl 
-                  transition-all duration-300 border border-purple-500/20 snap-center cursor-pointer 
-                  overflow-hidden ${selectedCertificate === certificate ? "scale-125" : "hover:scale-105"}`}
-                onClick={() => setSelectedCertificate(certificate)}
-              >
-                <img
-                  src={certificate.image}
-                  alt={certificate.name}
-                  
-                  className="w-full h-40 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{certificate.name}</h3>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <Award className="w-4 h-4" />
-                    <span>{certificate.issuer}</span>
-                  </div>
+                
+                <div className="absolute bottom-4 right-4 flex items-center gap-1 text-purple-300/80 group-hover:text-purple-200">
+                  <span className="text-sm">View details</span>
+                  <ChevronRight className="w-4 h-4 animate-pulse-x" />
                 </div>
               </div>
             ))}
@@ -591,12 +616,84 @@ function App() {
 
           {/* Navigation Arrow */}
           <button 
-            onClick={() => scrollToSection('skills')}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-purple-400 hover:text-purple-300 transition-colors animate-bounce"
+            onClick={() => scrollToSection('certificates')}
+            className="hidden sm:block absolute bottom-8 left-1/2 transform -translate-x-1/2 text-purple-400 hover:text-purple-300 transition-colors animate-bounce"
           >
             <ChevronDown className="w-10 h-10" />
           </button>
-        </section>
+          </section>
+
+        {/* Certificates Section */}
+        <section id="certificates" className="min-h-screen p-4 md:p-8 relative">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-12 text-center">Certificates</h2>
+
+          {/* MOBILE LAYOUT (vertical stack) */}
+          <div className="md:hidden space-y-4">
+            {certificates.map((certificate, index) => (
+              <div 
+                key={index}
+                className="w-full bg-purple-900/30 backdrop-blur-sm rounded-lg border border-purple-500/20 cursor-pointer"
+                onClick={() => setSelectedCertificate(certificate)}
+              >
+                <div className="flex items-start gap-4 p-4">
+                  <div className="flex-shrink-0 w-20 h-20 overflow-hidden rounded-md">
+                    <img
+                      src={certificate.image}
+                      alt={certificate.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold line-clamp-1">{certificate.name}</h3>
+                    <div className="flex items-center gap-2 text-gray-300 mt-1">
+                      <Award className="w-3 h-3 flex-shrink-0" />
+                      <span className="text-sm">{certificate.issuer}</span>
+                    </div>
+                    <span className="text-xs text-purple-400/60 mt-1 block">{certificate.date}</span>
+                  </div>
+                  <ChevronRight className="text-purple-400 mt-1 flex-shrink-0 animate-pulse-x" />
+                </div>
+              </div>
+            ))}
+          </div>
+        
+          {/* DESKTOP LAYOUT (horizontal scroll) */}
+          <div 
+            ref={certificatesRef}
+            className="hidden md:flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scrollbar-hide"
+          >
+            {certificates.map((certificate, index) => (
+              <div 
+                key={index}
+                className={`min-w-[400px] bg-purple-900/30 backdrop-blur-sm rounded-xl 
+                  transition-all duration-300 border border-purple-500/20 snap-center cursor-pointer 
+                  overflow-hidden ${selectedCertificate === certificate ? "scale-125" : "hover:scale-105"}`}
+                onClick={() => setSelectedCertificate(certificate)}
+              >
+                <img
+                  src={certificate.image}
+                  alt={certificate.name}
+                  className="w-full h-40 object-cover"
+                />
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">{certificate.name}</h3>
+                  <div className="flex items-center gap-2 text-gray-300">
+                    <Award className="w-4 h-4" />
+                    <span>{certificate.issuer}</span>
+                    <span className="text-purple-400/60 ml-auto">{certificate.date}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* Navigation Arrow */}
+          <button 
+            onClick={() => scrollToSection('skills')}
+            className="hidden sm:block absolute bottom-8 left-1/2 transform -translate-x-1/2 text-purple-400 hover:text-purple-300 transition-colors animate-bounce"
+          >
+            <ChevronDown className="w-10 h-10" />
+          </button>
+          </section>
 
         {/* Skills Section */}
         <section id="skills" className="py-12 px-8 relative">
@@ -616,12 +713,12 @@ function App() {
         
           {/* Navigation Arrow */}
           <button 
-            onClick={() => scrollToSection('contact')}
-            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-purple-400 hover:text-purple-300 transition-colors animate-bounce"
+            onClick={() => scrollToSection('centact')}
+            className="hidden sm:block absolute bottom-8 left-1/2 transform -translate-x-1/2 text-purple-400 hover:text-purple-300 transition-colors animate-bounce"
           >
             <ChevronDown className="w-10 h-10" />
           </button>
-        </section>
+          </section>
 
         {/* Contact Section */}
         <section id="contact" className="min-h-screen flex items-center justify-center p-8">
